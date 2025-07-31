@@ -1,0 +1,90 @@
+/* full-width banner */
+.bannerImage {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  height: 60vh;
+  background: url("../../assets/UntitledImage.png") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bannerImage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* NEW: two-row, two-column grid */
+.bannerContent {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 100%;
+  max-width: 1200px; /* optional max width */
+  /* Left twice as wide as right */
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "left right"
+    "search search";
+  gap: 1rem 2rem; /* row-gap / column-gap */
+  padding: 0 1rem; /* side padding */
+}
+
+/* left area */
+.bannerLeft {
+  grid-area: left;
+  display: flex;
+  align-items: center; /* vertically center your title */
+  width: 40%;
+  /* push it down a little more (optional if row-gap is enough) */
+  margin: 5rem;
+}
+
+/* right area stays empty for now */
+.bannerRight {
+  grid-area: right;
+  display: flex;
+}
+
+/* your title */
+.bannerTitle {
+  margin: 0;
+  color: #fff;
+  font-size: 2.5rem;
+}
+
+/* search row spans both columns */
+.searchContainer {
+  grid-area: search;
+  display: flex;
+
+  /* make the bar only, say, 60% as wide as the banner, 
+     but never wider than 600px */
+  width: 60%;
+  max-width: 600px;
+
+  /* push it down a little more (optional if row-gap is enough) */
+  margin: 10rem auto 0;
+}
+
+/* input/button styling as before */
+.searchInput {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 4px 0 0 4px;
+  font-size: 1rem;
+}
+
+.searchButton {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  background: #333;
+  color: #fff;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  font-size: 1rem;
+}
