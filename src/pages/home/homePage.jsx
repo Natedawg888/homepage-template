@@ -1,8 +1,15 @@
 import React from "react";
 import NavBar from "../../components/navbar/NavBar";
 import styles from "./home.module.css";
+import FeatureCard from "../../components/featureCard/FeatureCard";
+import placeholder from "../../assets/UntitledImage.png";
 
 export default function homePage() {
+  const cards = [
+    { title: "Lorem ipsum", subtitle: "Est venenatis", imageSrc: placeholder },
+    { title: "Dolor sit", subtitle: "Aliquet lectus", imageSrc: placeholder },
+    { title: "Amet lorem", subtitle: "Sed ultricies", imageSrc: placeholder },
+  ];
   return (
     <>
       <NavBar />
@@ -28,6 +35,17 @@ export default function homePage() {
               <button className={styles.searchButton}>Search</button>
             </div>
           </div>
+        </section>
+
+        <section className={styles.featuresGrid}>
+          {cards.map((c, i) => (
+            <FeatureCard
+              key={i}
+              imageSrc={c.imageSrc}
+              title={c.title}
+              subtitle={c.subtitle}
+            />
+          ))}
         </section>
       </main>
     </>

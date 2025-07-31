@@ -13,7 +13,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(158, 158, 158, 0.4);
 }
 
 /* NEW: two-row, two-column grid */
@@ -87,4 +87,13 @@
   border-radius: 0 4px 4px 0;
   cursor: pointer;
   font-size: 1rem;
+}
+
+.featuresGrid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
