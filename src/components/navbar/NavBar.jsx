@@ -1,21 +1,25 @@
-import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./NavBar.css"; // or .module.css if you prefer CSS Modules
+import placeholder from "../../assets/Avatar-white.png";
 
 export default function NavBar() {
+  const [open, setOpen] = useState(false);
+
   return (
     <nav className="navbar">
+      {/* Logo */}
       <div className="navbar-logo">
-        {/* replace /logo.svg with your actual logo path */}
         <img
-          src="/logo.svg"
+          src={placeholder}
           alt="My Company Logo"
           className="navbar-logo-img"
         />
         <span className="navbar-logo-text">My Company</span>
       </div>
 
-      <ul className="navbar-menu">
+      {/* Main menu (desktop + mobile dropdown) */}
+      <ul className={`navbar-menu${open ? " open" : ""}`}>
         <li>
           <Link to="/menu1">Menu1</Link>
         </li>
@@ -25,9 +29,24 @@ export default function NavBar() {
         <li>
           <Link to="/menu3">Menu3</Link>
         </li>
+
+        {/* Login inside the mobile dropdown */}
+        <li className="navbar-login-mobile">
+          <button className="navbar-login">Login</button>
+        </li>
       </ul>
 
-      <button className="navbar-login">Login</button>
+      {/* Desktop‐only Login button */}
+      <button className="navbar-login desktop-only">Login</button>
+
+      {/* Hamburger (mobile only) */}
+      <button
+        className="navbar-hamburger"
+        onClick={() => setOpen((o) => !o)}
+        aria-label="Toggle menu"
+      >
+        ☰
+      </button>
     </nav>
   );
 }

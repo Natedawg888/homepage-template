@@ -1,18 +1,20 @@
+/* --------------------------------------------
+   Base styles
+-------------------------------------------- */
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   padding: 1rem 2rem;
   background: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: fixed; /* if you still want it fixed at top */
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
 }
 
-/* Logo section */
+/* Logo */
 .navbar-logo {
   display: flex;
   align-items: center;
@@ -21,7 +23,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #ccc; /* placeholder grey bg */
+  background: #ccc;
   margin-right: 0.5rem;
   object-fit: cover;
 }
@@ -31,13 +33,12 @@
   color: #333;
 }
 
-/* Menu items */
+/* Desktop menu */
 .navbar-menu {
   list-style: none;
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
 
-  /* ← this pushes menu + login to the right edge */
   margin-left: auto;
   margin-right: 2rem; /* optional spacing before login */
 }
@@ -50,7 +51,7 @@
   color: #0070f3;
 }
 
-/* Login button */
+/* Desktop Login */
 .navbar-login {
   padding: 0.5rem 2rem;
   border: 1px solid #333;
@@ -61,4 +62,86 @@
 }
 .navbar-login:hover {
   background: #f0f0f0;
+}
+
+/* Hide mobile‐only items by default */
+.navbar-login-mobile {
+  display: none;
+}
+.navbar-hamburger {
+  display: none; /* shown on mobile */
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-left: auto; /* push it to the far right */
+}
+
+/* Only on desktop show the standalone login */
+.desktop-only {
+  display: inline-block;
+}
+
+/* --------------------------------------------
+   Mobile Styles (≤ 768px)
+-------------------------------------------- */
+@media (max-width: 768px) {
+  .navbar-menu {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    position: absolute;
+    top: 100%;
+    right: 0rem; /* lines up under the hamburger */
+    background: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    margin: 0;
+    padding: 0; /* kill any UL padding */
+    list-style: none;
+    width: 100px; /* pick a fixed width you like */
+    gap: 0rem;
+  }
+  .navbar-menu.open {
+    display: flex;
+  }
+
+  .navbar-menu li {
+    margin: 0;
+    padding: 0; /* kill any LI padding */
+  }
+
+  /* make the <a> or <button> fill the li and get a bottom border */
+  .navbar-menu li a,
+  .navbar-menu li .navbar-login {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 0.75rem 1rem; /* vertical/horizontal space */
+    background: none;
+    border: none;
+    border-bottom: 1px solid #e0e0e0; /* full‐width separator */
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  /* remove the last border */
+  .navbar-menu li:last-child a,
+  .navbar-menu li:last-child .navbar-login {
+    border-bottom: none;
+  }
+
+  /* show Login inside the menu */
+  .navbar-login-mobile {
+    display: block;
+  }
+  /* hide the desktop login/button outside */
+  .desktop-only {
+    display: none;
+  }
+  /* show the hamburger */
+  .navbar-hamburger {
+    display: block;
+  }
 }
